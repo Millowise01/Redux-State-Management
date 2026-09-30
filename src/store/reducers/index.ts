@@ -1,4 +1,5 @@
 import { combineReducers } from "redux";
+import { authReducer } from "./authReducer";
 import { counterReducer } from "./counterReducer";
 
 // combineReducers merges many reducers into one root reducer.
@@ -7,4 +8,5 @@ import { counterReducer } from "./counterReducer";
 // To add more features later (e.g. auth), add another key here.
 export const rootReducer = combineReducers({
   counter: counterReducer,
+  auth: authReducer,
 });

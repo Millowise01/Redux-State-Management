@@ -5,10 +5,36 @@ import { legacy_createStore as createStore, applyMiddleware } from "redux";
 import { logger } from "redux-logger";
 import { rootReducer } from "./reducers";
 
+const loadCounterValue = (): number => {
+	if (typeof window === "undefined") {
+		return 0;
+	}
+
+	const savedValue = Number(window.localStorage.getItem("counterValue"));
+	return Number.isFinite(savedValue) ? savedValue : 0;
+};
+
+const preloadedState = {
+	counter: { value: loadCounterValue() },
+};
+
 // The single global store. applyMiddleware(logger) makes every
 // dispatched action print "prev state / action / next state"
 // in the browser console, which is handy for debugging.
-export const store = createStore(rootReducer, applyMiddleware(logger));
+export const store = createStore(
+	rootReducer,
+	preloadedState,
+	applyMiddleware(logger)
+);
+
+store.subscribe(() => {
+	if (typeof window !== "undefined") {
+		window.localStorage.setItem(
+			"counterValue",
+			String(store.getState().counter.value)
+		);
+	}
+});
 
 // RootState: the type of the whole global state, inferred from the store.
 // Components use it to get typed access in useSelector.

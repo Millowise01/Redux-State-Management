@@ -75,6 +75,9 @@ export default defineConfig([
 
   ## Optional challenges
 
-  - Persist the counter in local storage.
-  - Add an action for setting a custom counter value.
-  - Add a second reducer, such as an authentication reducer.
+  - **Persist state:** The counter value is loaded from and saved to local
+    storage under `counterValue`.
+  - **Set a custom value:** Enter a number in the counter panel and dispatch the
+    typed `SET_VALUE` action.
+  - **Multiple reducers:** The `auth` reducer handles typed `LOGIN` and `LOGOUT`
+    actions and is combined with the counter reducer.

@@ -1,5 +1,10 @@
 import type { UnknownAction } from "redux";
-import { INCREMENT, DECREMENT, RESET } from "../actions/counterActions";
+import {
+  INCREMENT,
+  DECREMENT,
+  RESET,
+  SET_VALUE,
+} from "../actions/counterActions";
 // "import type" is required here: CounterAction is only a type,
 // and the Vite TS template enforces this (verbatimModuleSyntax).
 import type { CounterAction } from "../actions/counterActions";
@@ -29,6 +34,10 @@ export const counterReducer = (
       return { value: state.value - 1 };
     case RESET:
       return { value: 0 };
+    case SET_VALUE:
+      return "payload" in action && typeof action.payload === "number"
+        ? { value: action.payload }
+        : state;
     default:
       // Unknown action: return the same state untouched.
       return state;
