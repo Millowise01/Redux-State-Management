@@ -1,10 +1,16 @@
-import { StrictMode } from 'react'
-import { createRoot } from 'react-dom/client'
-import './index.css'
-import App from './App.tsx'
+import { StrictMode } from "react";
+import { createRoot } from "react-dom/client";
+// Provider makes the Redux store available to every component below it.
+import { Provider } from "react-redux";
+import { store } from "./store/store";
+import App from "./App";
+import "./index.css";
 
-createRoot(document.getElementById('root')!).render(
+createRoot(document.getElementById("root")!).render(
   <StrictMode>
-    <App />
-  </StrictMode>,
-)
+    {/* Anything inside Provider can use useSelector and useDispatch */}
+    <Provider store={store}>
+      <App />
+    </Provider>
+  </StrictMode>
+);

@@ -17,59 +17,64 @@ If you are developing a production application, we recommend updating the config
 
 ```js
 export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+  # React Guided Learning Activity: Redux State Management
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+  This project demonstrates manual Redux state management in a React + Vite +
+  TypeScript application. It uses Redux, React-Redux, and Redux Logger without
+  Redux Toolkit.
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+  ## Learning objectives
 
-```
+  - Create a Redux store with logger middleware.
+  - Define action constants, action creators, and a typed reducer.
+  - Combine reducers into a root reducer.
+  - Provide the store to React with `Provider`.
+  - Read global state with `useSelector` and update it with `useDispatch`.
 
-You can also install [eslint-plugin-react-x](https://npmx.dev/package/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://npmx.dev/package/eslint-plugin-react-dom) for React-specific lint rules:
+  ## Getting started
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+  ```bash
+  npm install
+  npm run dev
+  ```
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+  Open `http://localhost:5173/` in a browser. The counter starts at `0` and
+  supports increment, decrement, and reset actions. Redux Logger prints each
+  dispatch in the browser console.
 
-```
+  ## Project structure
+
+  ```text
+  src/
+    components/
+      Counter.tsx
+      Counter.module.css
+    store/
+      actions/counterActions.ts
+      reducers/counterReducer.ts
+      reducers/index.ts
+      store.ts
+    App.tsx
+    main.tsx
+  ```
+
+  The store is created manually with `createStore` (through Redux 5's
+  `legacy_createStore` alias) and `applyMiddleware(logger)`. The `counter` slice
+  is combined by `rootReducer`, then made available to the application in
+  `main.tsx` through React-Redux `Provider`.
+
+  ## Verification
+
+  ```bash
+  npm run lint
+  npm run build
+  ```
+
+  Do not commit `node_modules` or build output. Make meaningful commits as the
+  activity progresses and push the completed repository before submission.
+
+  ## Optional challenges
+
+  - Persist the counter in local storage.
+  - Add an action for setting a custom counter value.
+  - Add a second reducer, such as an authentication reducer.

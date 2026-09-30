@@ -1,0 +1,23 @@
+/* CSS Modules: class names are scoped to the component that imports
+   this file, so they won't clash with other styles. */
+.counterContainer {
+  display: flex;
+  flex-direction: column; /* stack the title and buttons vertically */
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 20px;
+  background-color: #f5f5f5;
+  border-radius: 10px;
+  width: 250px;
+  margin: auto; /* centre the box horizontally */
+}
+
+button {
+  padding: 10px 15px;
+  margin: 5px;
+  font-size: 16px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
