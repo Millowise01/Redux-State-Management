@@ -23,7 +23,7 @@ export default defineConfig([
   TypeScript application. It uses Redux, React-Redux, and Redux Logger without
   Redux Toolkit.
 
-  ## Learning objectives
+## Learning objectives
 
   - Create a Redux store with logger middleware.
   - Define action constants, action creators, and a typed reducer.
@@ -31,7 +31,7 @@ export default defineConfig([
   - Provide the store to React with `Provider`.
   - Read global state with `useSelector` and update it with `useDispatch`.
 
-  ## Getting started
+## Getting started
 
   ```bash
   npm install
@@ -42,7 +42,7 @@ export default defineConfig([
   supports increment, decrement, and reset actions. Redux Logger prints each
   dispatch in the browser console.
 
-  ## Project structure
+## Project structure
 
   ```text
   src/
@@ -63,7 +63,7 @@ export default defineConfig([
   is combined by `rootReducer`, then made available to the application in
   `main.tsx` through React-Redux `Provider`.
 
-  ## Verification
+## Verification
 
   ```bash
   npm run lint
@@ -73,11 +73,11 @@ export default defineConfig([
   Do not commit `node_modules` or build output. Make meaningful commits as the
   activity progresses and push the completed repository before submission.
 
-  ## Optional challenges
+## Optional challenges
 
-  - **Persist state:** The counter value is loaded from and saved to local
-    storage under `counterValue`.
-  - **Set a custom value:** Enter a number in the counter panel and dispatch the
-    typed `SET_VALUE` action.
-  - **Multiple reducers:** The `auth` reducer handles typed `LOGIN` and `LOGOUT`
-    actions and is combined with the counter reducer.
+- **Persist state:** The counter value is loaded from and saved to local
+  storage under `counterValue`.
+- **Set a custom value:** Enter a number in the counter panel and dispatch the
+  typed `SET_VALUE` action.
+- **Multiple reducers:** The `auth` reducer handles typed `LOGIN` and `LOGOUT`
+  actions and is combined with the counter reducer.
